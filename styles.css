@@ -26,10 +26,25 @@ button, .screen{
 .calculator{
     padding: 20px;
     border: 0.15em solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .screen{
-    height: 40px;
+    height: 100px;
+    padding: 10px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.prev{
+    font-size: 16px;
+}
+.current{
+    margin-bottom: 8px;
 }
 
 .buttons{
