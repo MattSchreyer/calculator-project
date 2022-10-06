@@ -40,11 +40,11 @@ button, .screen{
     justify-content: space-between;
 }
 
-.prev{
+#prev{
     font-size: 16px;
 }
-.current{
-    margin-bottom: 8px;
+#current{
+    font-size: 30px;
 }
 
 .buttons{
