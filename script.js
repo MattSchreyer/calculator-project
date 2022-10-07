@@ -1,10 +1,10 @@
-const OPERANDS = ['+', '-', '*', '/', '='];
-const NUMBERS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+const OPERANDS = ['+', '-', '*', '/'];
+const NUMBERS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const entryNode = document.querySelector('#current');
 const historyNode = document.querySelector('#prev');
 
-let preVal = '',
-    currVal = ''
+let preVal = 0,
+    currVal = 0,
     prevOp = '',
     currOp = '',
     lastType = false, //T- operand F- number
@@ -27,7 +27,7 @@ function divide(a,b){
     else return a / b;
 }
 function operate(num1, num2){
-    if (prevOp == '+') add(num1, num2);
+    if (prevOp == '+') return add(num1, num2);
     else if (prevOp == '-') return subtract(num1, num2);
     else if (prevOp == '*') return multiply(num1, num2);
     else if (prevOp == '/') return divide(num1, num2);
@@ -69,12 +69,19 @@ function input(node){
     else if (NUMBERS.includes(node.textContent)){
         if (entryNode.textContent=="0") 
             entryNode.textContent = node.textContent;
-        else if (node.textContent == '.')
-            entryNode.textContent = entryNode.textContent.concat(".");
         else
             entryNode.textContent = 
                 entryNode.textContent.concat(node.textContent);
         lastType = true;
+    }
+    else if (node.textContent == '.'){
+        if (entryNode.textContent.indexOf('.') == -1) 
+           entryNode.textContent = entryNode.textContent.concat(".");
+    }
+    else{ // = 
+        if (parseFloat(entryNode.textContent) != currVal){
+            
+        }
     }
 
     let debug = {newDisp:entryNode.textContent.concat(node.textContent), 
@@ -84,9 +91,10 @@ function input(node){
 }
 
 function clearDisp(){
-    preVal = '';
-    currVal = '';
+    preVal = 0;
+    currVal = 0;
     prevOp = '';
+    currOp = '';
     lastType = false;
     entryNode.textContent = "0";
     historyNode.textContent = "0";
